@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div style="max-width: 400px; margin: 2rem auto; padding: 1rem;">
+        <h1>Register</h1>
+        
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div style="background: #fee2e2; border: 1px solid #ef4444; padding: 1rem; margin-bottom: 1rem; border-radius: 0.25rem;">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(registrationForm, {'attr': {'style': 'margin-top: 1rem;'}}) }}
+            <div style="margin-bottom: 1rem;">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr': {'style': 'width: 100%; padding: 0.5rem;'}}) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'style': 'width: 100%; padding: 0.5rem;'}}) }}
+                {{ form_errors(registrationForm.plainPassword.first) }}
+            </div>
+
+            <div style="margin-bottom: 1rem;">
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'style': 'width: 100%; padding: 0.5rem;'}}) }}
+                {{ form_errors(registrationForm.plainPassword.second) }}
+            </div>
+
+            <button type="submit" style="background: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem;">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

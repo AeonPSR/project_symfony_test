@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        
+        {% block stylesheets %}
+            <style>
+                .nav-menu {
+                    background-color: #333;
+                    padding: 1rem;
+                    margin-bottom: 2rem;
+                }
+                
+                .nav-menu a {
+                    color: white;
+                    text-decoration: none;
+                    padding: 0.5rem 1rem;
+                    margin: 0 0.5rem;
+                    border-radius: 4px;
+                    background-color: #666;
+                }
+                
+                .nav-menu a:hover {
+                    background-color: #888;
+                }
+            </style>
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="nav-menu">
+            <a href="{{ path('app_home') }}">Home</a>
+			<a href="{{ path('app_article_list') }}">Articles</a>
+            {% if app.user %}
+				<a href="{{ path('app_logout') }}">Logout ({{ app.user.email }})</a>
+			{% else %}
+				<a href="{{ path('app_login') }}">Login</a>
+				<a href="{{ path('app_register') }}">Register</a>
+			{% endif %}
+        </nav>
+        
+        {% block body %}{% endblock %}
+    </body>
+</html>

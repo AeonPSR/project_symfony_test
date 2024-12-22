@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div style="max-width: 400px; margin: 2rem auto; padding: 1rem;">
+        <h1>Login</h1>
+        
+        {# Display registered users #}
+        <div style="margin-bottom: 2rem; padding: 1rem; background: #f3f4f6; border-radius: 0.5rem;">
+            <h2 style="font-size: 1.2rem; margin-bottom: 1rem;">Registered Users:</h2>
+            <ul style="list-style: none; padding: 0;">
+                {% for user in users %}
+                    <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: white; border-radius: 0.25rem;">
+                        {{ user.email }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form action="{{ path('app_login') }}" method="post">
+            <div style="margin-bottom: 1rem;">
+                <label for="username">Email:</label>
+                <input type="email" id="username" name="_username" style="width: 100%; padding: 0.5rem;">
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="_password" style="width: 100%; padding: 0.5rem;">
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            
+            <button type="submit" style="background: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem;">Login</button>
+        </form>
+    </div>
+{% endblock %}

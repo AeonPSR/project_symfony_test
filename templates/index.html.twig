@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to TTRPG Dice Blog{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            background-image: url('/images/dice-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to TTRPG Dice Blog</h1>
+            <p>Explore the fascinating world of tabletop gaming dice, probabilities, and strategies</p>
+            <a href="{{ path('app_article_list') }}" class="cta-button">View All Articles</a>
+        </div>
+    </section>
+
+    <section style="text-align: center; padding: 4rem 2rem;">
+        <h2>About Our Blog</h2>
+        <p style="max-width: 600px; margin: 1rem auto;">
+            Dive into the world of tabletop RPG dice mechanics, probability analysis, 
+            and strategic insights. Whether you're a dungeon master or a player, 
+            our articles will help you understand the math behind the magic.
+        </p>
+    </section>
+{% endblock %}

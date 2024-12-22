@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center; margin: 2rem 0;">All Articles</h1>
+    <section class="article-grid">
+        {% for article in articles %}
+            <article class="article-card">
+                <div class="article-content">
+                    <h2>{{ article.title }}</h2>
+                    <div class="article-meta">
+                        {{ article.createdAt|date('M d, Y') }} • {{ article.author }}
+                    </div>
+                    <p>{{ article.excerpt }}</p>
+                    <a href="{{ path('app_article', {slug: article.slug}) }}" class="read-more">Read More</a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
